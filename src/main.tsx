@@ -5,11 +5,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { FirstScene } from "./screens/FirstScene.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/home",
     element: <App />,
+  },
+  {
+    path: "/first-scene",
+    element: <FirstScene />,
   },
 ]);
 
