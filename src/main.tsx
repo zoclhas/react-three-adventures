@@ -8,6 +8,7 @@ import { CanvasWrapper } from "./components/canvas.tsx";
 
 import { Home } from "./screens/Home.tsx";
 import { FirstScene } from "./screens/FirstScene.tsx";
+import { CubesScreen } from "./screens/Cubes.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,16 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper>
           <FirstScene />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/cubes",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper>
+          <CubesScreen />
         </CanvasWrapper>
       </div>
     ),

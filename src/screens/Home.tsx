@@ -6,6 +6,10 @@ export function Home() {
       href: "/first-scene",
       label: "Line-Only Pyramid",
     },
+    {
+      href: "/cubes",
+      label: "Cubes",
+    },
   ];
 
   return (
