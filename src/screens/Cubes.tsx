@@ -22,10 +22,10 @@ const Cube: React.FC<{
   > | null>(null);
 
   useFrame(({ clock }) => {
-    if (rotate && myMesh.current) {
-      myMesh.current.rotation.x = clock.getElapsedTime() + posX;
-      myMesh.current.rotation.y = clock.getElapsedTime() + posX;
-      myMesh.current.rotation.z = clock.getElapsedTime() + posX;
+    if (myMesh.current) {
+      myMesh.current.rotation.x = rotate ? clock.getElapsedTime() + posX : 0;
+      myMesh.current.rotation.y = rotate ? clock.getElapsedTime() + posX : 0;
+      myMesh.current.rotation.z = rotate ? clock.getElapsedTime() + posX : 0;
     }
   });
   return (
