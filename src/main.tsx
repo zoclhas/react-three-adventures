@@ -3,11 +3,11 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import { Canvas } from "@react-three/fiber";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { FirstScene } from "./screens/FirstScene.tsx";
 import { Stats } from "@react-three/drei";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { CanvasWrapper } from "./components/canvas.tsx";
+import { FirstScene } from "./screens/FirstScene.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,10 +18,10 @@ const router = createBrowserRouter([
     path: "/first-scene",
     element: (
       <div className="h-screen">
-        <Canvas>
+        <CanvasWrapper>
           <FirstScene />
           <Stats />
-        </Canvas>
+        </CanvasWrapper>
       </div>
     ),
   },
