@@ -9,6 +9,7 @@ import { CanvasWrapper } from "./components/canvas.tsx";
 import { Home } from "./screens/Home.tsx";
 import { FirstScene } from "./screens/FirstScene.tsx";
 import { CubesScreen } from "./screens/Cubes.tsx";
+import { Animation } from "./screens/Animation.tsx";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,16 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper>
           <CubesScreen />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/animation",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper gl={{ alpha: false }}>
+          <Animation />
         </CanvasWrapper>
       </div>
     ),

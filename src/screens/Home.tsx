@@ -10,6 +10,10 @@ export function Home() {
       href: "/cubes",
       label: "Cubes",
     },
+    {
+      href: "/animation",
+      label: "Animation",
+    },
   ];
 
   return (
