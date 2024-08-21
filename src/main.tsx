@@ -2,17 +2,17 @@ import "./index.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
 
-import { Stats } from "@react-three/drei";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CanvasWrapper } from "./components/canvas.tsx";
+
+import { Home } from "./screens/Home.tsx";
 import { FirstScene } from "./screens/FirstScene.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/home",
-    element: <App />,
+    path: "/",
+    element: <Home />,
   },
   {
     path: "/first-scene",
@@ -20,7 +20,6 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper>
           <FirstScene />
-          <Stats />
         </CanvasWrapper>
       </div>
     ),
