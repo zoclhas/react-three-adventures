@@ -14,6 +14,10 @@ export function Home() {
       href: "/animation",
       label: "Animation",
     },
+    {
+      href: "/debug-ui",
+      label: "Debug UI",
+    },
   ];
 
   return (

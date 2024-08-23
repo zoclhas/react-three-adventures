@@ -10,6 +10,7 @@ import { Home } from "./screens/Home.tsx";
 import { FirstScene } from "./screens/FirstScene.tsx";
 import { CubesScreen } from "./screens/Cubes.tsx";
 import { Animation } from "./screens/Animation.tsx";
+import { DebugUi } from "./screens/DebugUi.tsx";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,23 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper gl={{ alpha: false }}>
           <Animation />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/debug-ui",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper
+          camera={{
+            fov: 90,
+          }}
+          gl={{
+            alpha: true,
+          }}
+        >
+          <DebugUi />
         </CanvasWrapper>
       </div>
     ),
