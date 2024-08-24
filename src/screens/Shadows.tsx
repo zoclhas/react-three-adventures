@@ -9,7 +9,7 @@ import { ComponentProps, useLayoutEffect } from "react";
 import * as THREE from "three";
 import { FlakesTexture } from "three/examples/jsm/Addons.js";
 
-export function Shadows() {
+export function Shadows2() {
   return (
     <>
       <color attach="background" args={["#bf2c6e"]} />
@@ -33,7 +33,7 @@ export function Shadows() {
   );
 }
 
-export function Shadows2() {
+export function Shadows() {
   return (
     <>
       <color attach="background" args={["#bf2c6e"]} />

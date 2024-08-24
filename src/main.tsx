@@ -11,10 +11,11 @@ import { CubesScreen } from "./screens/Cubes.tsx";
 import { DebugUi } from "./screens/DebugUi.tsx";
 import { FirstScene } from "./screens/FirstScene.tsx";
 import { Home } from "./screens/Home.tsx";
-import { Materials } from "./screens/Materials/index.tsx";
-import { Textures } from "./screens/Texture/index.tsx";
 import { Lights } from "./screens/Lights.tsx";
+import { Materials } from "./screens/Materials/index.tsx";
+import { PhysicsScence } from "./screens/Physics.tsx";
 import { Shadows } from "./screens/Shadows.tsx";
+import { Textures } from "./screens/Texture/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,16 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper shadows>
           <Shadows />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/physics",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper shadows>
+          <PhysicsScence />
         </CanvasWrapper>
       </div>
     ),

@@ -34,6 +34,10 @@ export function Home() {
       href: "/shadows",
       label: "Shadows",
     },
+    {
+      href: "/physics",
+      label: "Physics",
+    },
   ];
 
   return (
