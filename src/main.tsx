@@ -14,6 +14,7 @@ import { Home } from "./screens/Home.tsx";
 import { Materials } from "./screens/Materials/index.tsx";
 import { Textures } from "./screens/Texture/index.tsx";
 import { Lights } from "./screens/Lights.tsx";
+import { Shadows } from "./screens/Shadows.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
     path: "/cubes",
     element: (
       <div className="h-screen">
-        <CanvasWrapper>
+        <CanvasWrapper shadows>
           <CubesScreen />
         </CanvasWrapper>
       </div>
@@ -91,8 +92,18 @@ const router = createBrowserRouter([
     path: "/lights",
     element: (
       <div className="h-screen">
-        <CanvasWrapper gl={{ alpha: false }}>
+        <CanvasWrapper>
           <Lights />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/shadows",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper shadows>
+          <Shadows />
         </CanvasWrapper>
       </div>
     ),

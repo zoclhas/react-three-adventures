@@ -62,28 +62,39 @@ const Light = () => {
 
   return (
     <>
-      <ambientLight args={[0xffffff, 0.5]} />
+      <ambientLight args={[0xffffff, 0.3]} castShadow />
       <directionalLight
         ref={directionalLightRef}
         args={[0x00ffcc, 0.3]}
         position={[1, 0.25, 0]}
+        castShadow
       />
       {directionalLightRef.current && (
         <directionalLightHelper args={[directionalLightRef.current, 0.2]} />
       )}
-      <hemisphereLight args={[0xff0000, 0x0000ff, 0.3]} />
-      <pointLight args={[0xff9000, 0.8, 10, 2]} position={[1, -0.5, 1]} />
-      <pointLight args={[0xff9000, 0.8, 10, 2]} position={[-1.5, 0, -0.5]} />
+      <hemisphereLight args={[0xff0000, 0x0000ff, 0.3]} castShadow />
+      <pointLight
+        args={[0xff9000, 0.8, 10, 2]}
+        position={[1, -0.5, 1]}
+        castShadow
+      />
+      <pointLight
+        args={[0xff9000, 0.8, 10, 2]}
+        position={[-1.5, 0, -0.5]}
+        castShadow
+      />
       <rectAreaLight
         ref={ral}
         args={[0x4e00ff, 2, 1, 1]}
         position={[-1.5, 0, 1.5]}
+        castShadow
       />
       <spotLight
         ref={sl}
         args={[0x78ff00, 0.5, 6, Math.PI * 0.1, 0.25, 1]}
         position={[0, 2, 3]}
-      />{" "}
+        castShadow
+      />
     </>
   );
 };
@@ -102,7 +113,9 @@ const MeshWithRotation: React.FC<MeshProps> = (props) => {
       ref.current.rotation.x += 0.15 * delta;
     }
   });
-  return <mesh {...props} ref={ref} material={material} />;
+  return (
+    <mesh {...props} ref={ref} material={material} castShadow receiveShadow />
+  );
 };
 
 const Objects = () => {
@@ -128,6 +141,7 @@ const Objects = () => {
               material={material}
               position={[0, -0.65, 0]}
               rotation={[-Math.PI * 0.5, 0, 0]}
+              receiveShadow
             >
               <planeGeometry args={[5, 5]} />
             </mesh>

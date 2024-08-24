@@ -30,6 +30,10 @@ export function Home() {
       href: "/lights",
       label: "Lights",
     },
+    {
+      href: "/shadows",
+      label: "Shadows",
+    },
   ];
 
   return (
