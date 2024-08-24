@@ -1,3 +1,4 @@
+import { color } from "three/webgpu";
 import baseColor from "./assets/Metal048C_1K-JPG_Color.jpg";
 import height from "./assets/Metal048C_1K-JPG_Displacement.jpg";
 import metal from "./assets/Metal048C_1K-JPG_Metalness.jpg";
@@ -11,48 +12,89 @@ import px from "./assets/env/px.jpg";
 import py from "./assets/env/py.jpg";
 import pz from "./assets/env/pz.jpg";
 
-import {
-  CameraControls,
-  Environment,
-  useCubeTexture,
-  useTexture,
-} from "@react-three/drei";
+import { a } from "@react-spring/three";
+import { CameraControls, Environment } from "@react-three/drei";
 import { MeshProps, useFrame, useLoader } from "@react-three/fiber";
-import React, { useState } from "react";
+import React from "react";
 import * as THREE from "three";
-import { a, useSpring } from "@react-spring/three";
-import { makeButton, useTweaks } from "use-tweaks";
+import { makeFolder, useTweaks } from "use-tweaks";
 
 export function Materials() {
+  const material = useLoader(THREE.TextureLoader, [
+    baseColor,
+    normal,
+    rough,
+    height,
+    metal,
+  ]);
+  material.map((m) => ({
+    ...m,
+    repeat: {
+      ...m.repeat,
+      x: 1,
+      y: 1,
+    },
+  }));
   const [colorMap, normalMap, roughnessMap, displacementMap, metalnessMap] =
-    useLoader(THREE.TextureLoader, [baseColor, normal, rough, height, metal]);
-  const envMap = useCubeTexture([nx, ny, nz, px, py, pz], { path: "" });
+    material;
 
-  // @ts-expect-error I dont know
-  const { ambientIntensity, pointIntensity, metalness } = useTweaks({
-    ambientIntensity: {
-      value: 0.8,
-      min: 0,
-      max: 1,
-    },
-    pointIntensity: {
-      value: 50,
-      min: 0,
-      max: 100,
-    },
-    metalness: {
-      value: 1,
-      min: 0,
-      max: 1,
-    },
+  const {
+    // @ts-expect-error I dont know
+    ambientIntensity,
+    // @ts-expect-error I dont know
+    pointIntensity,
+    // @ts-expect-error I dont know
+    metalness,
+    // @ts-expect-error I dont know
+    radius,
+    // @ts-expect-error I dont know
+    widthSegments,
+    // @ts-expect-error I dont know
+    heightSegments,
+  } = useTweaks({
+    ...makeFolder("Material", {
+      ambientIntensity: {
+        value: 0.8,
+        min: 0,
+        max: 1,
+      },
+      pointIntensity: {
+        value: 50,
+        min: 0,
+        max: 100,
+      },
+      metalness: {
+        value: 1,
+        min: 0,
+        max: 1,
+      },
+    }),
+    ...makeFolder("Sphere", {
+      radius: {
+        value: 1,
+        min: 1,
+        max: 5,
+      },
+      widthSegments: {
+        value: 512,
+        min: 3,
+        max: 1024,
+      },
+      heightSegments: {
+        value: 512,
+        min: 2,
+        max: 1024,
+      },
+    }),
   });
 
   return (
     <>
-      <mesh>
+      <SharedMesh>
         <ambientLight intensity={ambientIntensity} />
         <a.pointLight intensity={pointIntensity} position={[6, 6, -3]} />
-        <boxGeometry />
+
+        <sphereGeometry args={[radius, widthSegments, heightSegments]} />
         <meshStandardMaterial
           map={colorMap}
           normalMap={normalMap}
@@ -61,11 +103,10 @@ export function Materials() {
           metalnessMap={metalnessMap}
           displacementScale={0}
           metalness={metalness}
-          envMap={envMap}
         />
-      </mesh>
+      </SharedMesh>
+      <Environment files={[nx, ny, nz, px, py, pz]} background />
       <CameraControls minDistance={1} distance={5} maxDistance={10} />
-      <Environment map={envMap} background />
     </>
   );
 }
@@ -78,8 +119,7 @@ const SharedMesh: React.FC<MeshProps> = (props) => {
   > | null>(null);
   useFrame((_, delta) => {
     if (ref.current) {
-      ref.current.rotation.y += 0.1 * delta;
-      ref.current.rotation.x += 0.15 * delta;
+      ref.current.rotation.y += 0.15 * delta;
     }
   });
   return (

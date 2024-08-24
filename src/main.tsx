@@ -6,13 +6,13 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { CanvasWrapper } from "./components/canvas.tsx";
 
-import { Home } from "./screens/Home.tsx";
-import { FirstScene } from "./screens/FirstScene.tsx";
-import { CubesScreen } from "./screens/Cubes.tsx";
 import { Animation } from "./screens/Animation.tsx";
+import { CubesScreen } from "./screens/Cubes.tsx";
 import { DebugUi } from "./screens/DebugUi.tsx";
-import { Textures } from "./screens/Texture/index.tsx";
+import { FirstScene } from "./screens/FirstScene.tsx";
+import { Home } from "./screens/Home.tsx";
 import { Materials } from "./screens/Materials/index.tsx";
+import { Textures } from "./screens/Texture/index.tsx";
 
 const router = createBrowserRouter([
   {
