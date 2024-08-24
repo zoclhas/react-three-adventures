@@ -18,6 +18,10 @@ export function Home() {
       href: "/debug-ui",
       label: "Debug UI",
     },
+    {
+      href: "/textures",
+      label: "Textures",
+    },
   ];
 
   return (

@@ -11,6 +11,7 @@ import { FirstScene } from "./screens/FirstScene.tsx";
 import { CubesScreen } from "./screens/Cubes.tsx";
 import { Animation } from "./screens/Animation.tsx";
 import { DebugUi } from "./screens/DebugUi.tsx";
+import { Textures } from "./screens/Texture/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,16 @@ const router = createBrowserRouter([
           }}
         >
           <DebugUi />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/textures",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper>
+          <Textures />
         </CanvasWrapper>
       </div>
     ),
