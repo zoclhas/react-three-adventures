@@ -22,6 +22,10 @@ export function Home() {
       href: "/textures",
       label: "Textures",
     },
+    {
+      href: "/materials",
+      label: "Materials",
+    },
   ];
 
   return (

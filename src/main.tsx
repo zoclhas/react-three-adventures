@@ -12,6 +12,7 @@ import { CubesScreen } from "./screens/Cubes.tsx";
 import { Animation } from "./screens/Animation.tsx";
 import { DebugUi } from "./screens/DebugUi.tsx";
 import { Textures } from "./screens/Texture/index.tsx";
+import { Materials } from "./screens/Materials/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,16 @@ const router = createBrowserRouter([
       <div className="h-screen">
         <CanvasWrapper>
           <Textures />
+        </CanvasWrapper>
+      </div>
+    ),
+  },
+  {
+    path: "/materials",
+    element: (
+      <div className="h-screen">
+        <CanvasWrapper gl={{ alpha: false }}>
+          <Materials />
         </CanvasWrapper>
       </div>
     ),

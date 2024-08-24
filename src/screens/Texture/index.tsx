@@ -1,12 +1,12 @@
 import baseColor from "./assets/Metal048C_1K-JPG_Color.jpg";
 import baseColor2 from "./assets/gold_block.png";
 
-import React, { Suspense, useState } from "react";
-import * as THREE from "three";
-import { CameraControls } from "@react-three/drei";
 import { a, useSpring } from "@react-spring/three";
-import { useTweaks, makeButton } from "use-tweaks";
+import { CameraControls } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
+import { useState } from "react";
+import * as THREE from "three";
+import { makeButton, useTweaks } from "use-tweaks";
 
 export function Textures() {
   const texture = useLoader(THREE.TextureLoader, baseColor);
@@ -65,7 +65,7 @@ const Cube = ({
       position={boxPosition}
     >
       <boxGeometry />
-      <a.meshBasicMaterial attach="material" map={texture} />{" "}
+      <meshBasicMaterial attach="material" map={texture} />
     </a.mesh>
   );
 };
