@@ -13,13 +13,23 @@ import py from "./assets/env/py.jpg";
 import pz from "./assets/env/pz.jpg";
 
 import { a } from "@react-spring/three";
-import { CameraControls, Environment } from "@react-three/drei";
+import { CameraControls, Environment, useCubeTexture } from "@react-three/drei";
 import { MeshProps, useFrame, useLoader } from "@react-three/fiber";
 import React from "react";
 import * as THREE from "three";
 import { makeFolder, useTweaks } from "use-tweaks";
 
 export function Materials() {
+  return (
+    <>
+      <GoldMatSphere />
+      <Environment files={[nx, ny, nz, px, py, pz]} background />
+      <CameraControls minDistance={1} distance={5} maxDistance={10} />
+    </>
+  );
+}
+
+export const GoldMatSphere = ({ enableEnv }: { enableEnv?: boolean }) => {
   const material = useLoader(THREE.TextureLoader, [
     baseColor,
     normal,
@@ -37,6 +47,7 @@ export function Materials() {
   }));
   const [colorMap, normalMap, roughnessMap, displacementMap, metalnessMap] =
     material;
+  const envMap = useCubeTexture([nx, ny, nz, px, py, pz], { path: "" });
 
   const {
     // @ts-expect-error I dont know
@@ -76,40 +87,37 @@ export function Materials() {
         max: 5,
       },
       widthSegments: {
-        value: 512,
+        value: 128,
         min: 3,
-        max: 1024,
+        max: 512,
       },
       heightSegments: {
-        value: 512,
+        value: 128,
         min: 2,
-        max: 1024,
+        max: 512,
       },
     }),
   });
 
   return (
-    <>
-      <SharedMesh>
-        <ambientLight intensity={ambientIntensity} />
-        <a.pointLight intensity={pointIntensity} position={[6, 6, -3]} />
+    <SharedMesh>
+      <ambientLight intensity={ambientIntensity} />
+      <a.pointLight intensity={pointIntensity} position={[6, 6, -3]} />
 
-        <sphereGeometry args={[radius, widthSegments, heightSegments]} />
-        <meshStandardMaterial
-          map={colorMap}
-          normalMap={normalMap}
-          roughnessMap={roughnessMap}
-          displacementMap={displacementMap}
-          metalnessMap={metalnessMap}
-          displacementScale={0}
-          metalness={metalness}
-        />
-      </SharedMesh>
-      <Environment files={[nx, ny, nz, px, py, pz]} background />
-      <CameraControls minDistance={1} distance={5} maxDistance={10} />
-    </>
+      <sphereGeometry args={[radius, widthSegments, heightSegments]} />
+      <meshStandardMaterial
+        map={colorMap}
+        normalMap={normalMap}
+        roughnessMap={roughnessMap}
+        displacementMap={displacementMap}
+        metalnessMap={metalnessMap}
+        displacementScale={0}
+        metalness={metalness}
+        envMap={enableEnv ? envMap : undefined}
+      />
+    </SharedMesh>
   );
-}
+};
 
 const SharedMesh: React.FC<MeshProps> = (props) => {
   const ref = React.useRef<THREE.Mesh<

@@ -26,6 +26,10 @@ export function Home() {
       href: "/materials",
       label: "Materials",
     },
+    {
+      href: "/lights",
+      label: "Lights",
+    },
   ];
 
   return (
